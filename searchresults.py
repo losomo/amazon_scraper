@@ -1,11 +1,17 @@
 from selectorlib import Extractor
 import requests
 import json
+import random
 from time import sleep
+from amazon_scraper import local_config
 
 
 # Create an Extractor by reading from the YAML file
 e = Extractor.from_yaml_file('amazon_scraper/search_results.yml')
+
+proxies = {
+    'http': 'http://' + random.choice(local_config.proxies())
+}
 
 def scrape(url):
 
@@ -24,7 +30,7 @@ def scrape(url):
 
     # Download the page using requests
     print("Downloading %s"%url)
-    r = requests.get(url, headers=headers)
+    r = requests.get(url, headers=headers, proxies=proxies)
     # Simple check to check if page was blocked (Usually 503)
     if r.status_code > 500:
         if "To discuss automated access to Amazon data please contact" in r.text:
