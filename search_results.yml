@@ -26,3 +26,8 @@ products:
             css: 'span.a-price:nth-of-type(1) span.a-offscreen'
             xpath: null
             type: Text
+        badge:
+            css: 'span[aria-label="Amazon''s Choice"] span.a-badge'
+            xpath: null
+            type: Attribute
+            attribute: id
