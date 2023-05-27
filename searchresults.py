@@ -11,7 +11,8 @@ e = Extractor.from_yaml_file('amazon_scraper/search_results.yml')
 
 def proxies():
     return {
-        'http': 'http://' + random.choice(local_config.proxies())
+        'http': 'http://' + random.choice(local_config.proxies()),
+        'https': 'http://' + random.choice(local_config.proxies()),
     }
 
 def scrape(url):
